@@ -1,0 +1,18 @@
+#Final
+class Solution(object):
+    def firstBadVersion(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        min_version = 1
+        max_version = n #Create min and max variables
+        if n == 1:
+            return n #Handle case where only one value
+        while max_version > min_version:
+            mid = (max_version + min_version) // 2 #Binary search block
+            if isBadVersion(mid) == False:
+                min_version = mid + 1
+            else:
+                max_version = mid
+        return min_version #continuously iterates until min_version == target, meaning we return min-ersion
