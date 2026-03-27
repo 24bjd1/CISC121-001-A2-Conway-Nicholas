@@ -1,0 +1,16 @@
+#Final
+class Solution(object):
+    def climbStairs(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        memo = {} #memoization of values
+        def climb(i):
+            if i <= 1: #How to break the recursion / base case
+                return 1
+            if i in memo:
+                return memo[i] #handles duplicate responses
+            memo[i] = climb(i - 1) + climb(i - 2)
+            return memo[i] # sends new value to memo
+        return climb(n)
