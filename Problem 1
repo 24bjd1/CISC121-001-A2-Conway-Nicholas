@@ -1,0 +1,25 @@
+#Final 
+class Solution(object):
+    def isValid(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        opened = ["(","[","{"]
+        characters = ["(",")","[","]","{","}"] #For comparisons to classify the character from the string
+        stack = []
+        items = list(s)
+        for i in range(len(items)):
+            if items[i] in opened:
+                stack.append(items[i]) #add bracket to stack if its an opening bracket
+            else:
+                if not stack: #if stack is empty, return false because can't start with closing bracket
+                    return False
+                if characters.index(items[i])-1 == characters.index(stack[-1]): #compare list indexes to determine if the last item in stack was pair 
+                    stack.pop()
+                else:
+                    return False
+        if stack:
+            return False #if stack still has values, return false
+        else:
+            return True
