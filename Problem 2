@@ -1,0 +1,22 @@
+#Final
+class Solution(object):
+    def countStudents(self, students, sandwiches):
+        """
+        :type students: List[int]
+        :type sandwiches: List[int]
+        :rtype: int
+        """
+        over = False #Handles infinite loop risk
+        while over == False:
+            m = 0 #counts changes in the sandwich stack 
+            for i in range(len(students)):
+                if sandwiches[0] == students[0]: #first sandwich and first student same, remove both
+                    sandwiches.pop(0)
+                    students.pop(0)
+                    m += 1
+                else:
+                    students.append(students[0]) #put student at back of line
+                    students.pop(0)
+            if m == 0 or not students or not sandwiches: #If students or sandwiches are empty or no changes occurred during the loop, break the loop
+                over = True
+        return len(students)
